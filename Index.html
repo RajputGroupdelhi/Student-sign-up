@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Login Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white p-8 rounded-2xl shadow-md w-[450px]">
+    <h2 class="text-2xl font-bold mb-6 text-center">Student Login Form</h2>
+    <form id="loginForm" class="space-y-4">
+
+      <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded" required>
+      <input type="text" id="roll" placeholder="Roll No." class="w-full p-2 border rounded" required>
+      <input type="text" id="studentId" placeholder="Student ID" class="w-full p-2 border rounded" required>
+      <input type="email" id="email" placeholder="Email ID" class="w-full p-2 border rounded" required>
+      <input type="tel" id="mobile" placeholder="Mobile No." class="w-full p-2 border rounded" required pattern="[0-9]{10}">
+      
+      <select id="member" class="w-full p-2 border rounded" required>
+        <option value="">Select Member</option>
+        <option value="Shankar">Shankar</option>
+        <option value="Harsh">Harsh</option>
+        <option value="Vishal">Vishal</option>
+      </select>
+
+      <!-- Captcha -->
+      <div class="flex items-center space-x-2">
+        <span id="captchaText" class="font-bold text-lg"></span>
+        <input type="text" id="captchaInput" placeholder="Enter Captcha" class="flex-1 p-2 border rounded" required>
+      </div>
+
+      <!-- Checkbox -->
+      <label class="flex items-center">
+        <input type="checkbox" id="agree" class="mr-2" required>
+        I agree to the Terms & Conditions
+      </label>
+<label class="flex items-center">
+  <input type="checkbox" id="agree" class="mr-2" required>
+  I agree to the <a href="terms.html" target="_blank" class="text-blue-600 underline">Terms & Conditions</a>
+</label>
+      <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Submit</button>
+    </form>
+    <p id="msg" class="mt-4 text-center font-semibold"></p>
+  </div>
+
+  <script>
+    // Simple Captcha
+    function generateCaptcha() {
+      const a = Math.floor(Math.random() * 10);
+      const b = Math.floor(Math.random() * 10);
+      document.getElementById("captchaText").innerText = `${a} + ${b} = ?`;
+      return a + b;
+    }
+
+    let captchaAnswer = generateCaptcha();
+
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      // Captcha check
+      const userCaptcha = parseInt(document.getElementById("captchaInput").value);
+      if(userCaptcha !== captchaAnswer) {
+        document.getElementById("msg").innerText = "❌ Wrong captcha, try again!";
+        captchaAnswer = generateCaptcha();
+        return;
+      }
+
+      const data = {
+        name: document.getElementById("name").value,
+        roll: document.getElementById("roll").value,
+        studentId: document.getElementById("studentId").value,
+        email: document.getElementById("email").value,
+        mobile: document.getElementById("mobile").value,
+        member: document.getElementById("member").value
+      };
+
+      // API call to backend (Power Automate / Node.js)
+      const response = await fetch("YOUR_API_ENDPOINT_URL", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if(response.ok){
+        document.getElementById("msg").innerText = "✅ Data saved successfully!";
+      } else {
+        document.getElementById("msg").innerText = "⚠️ Error saving data.";
+      }
+
+      captchaAnswer = generateCaptcha(); // reset captcha
+    });
+  </script>
+</body>
+  </html>
