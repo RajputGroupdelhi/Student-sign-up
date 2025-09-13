@@ -32,12 +32,44 @@
         <option value="Harsh">Harsh</option>
         <option value="Vishal">Vishal</option>
       </select>
-      <--it will be saved here-->
-<iframe 
-  src="https://docs.google.com/spreadsheets/d/1DzWgnzNft2LxDqrvrxT60QboumhsK6QcFHRowKLkBb4/pubhtml?widget=true&headers=false" 
-  width="100%" height="500">
-</iframe>
+      <script>
+  // 🔗 Apna Google Apps Script URL yaha paste karo
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbxxxxxxx/exec";  
 
+  const form = document.getElementById("regForm");
+  const msg = document.getElementById("msg");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.textContent = "⏳ Submitting...";
+
+    const formData = new FormData(form);
+    const data = {
+      fullName: formData.get("fullName"),
+      studentId: formData.get("studentId"),
+      mobile: formData.get("mobile"),
+      email: formData.get("email"),
+      className: formData.get("className")
+    };
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      });
+      const result = await res.json();
+      if (result.status === "success") {
+        msg.textContent = "✅ Registration Successful!";
+        form.reset();
+      } else {
+        msg.textContent = "⚠️ Error: " + result.message;
+      }
+    } catch (err) {
+      msg.textContent = "❌ Failed: " + err.message;
+    }
+  });
+      </script>
       <!-- Terms & Conditions link -->
       <label class="flex items-center">
         <input type="checkbox" id="agree" class="mr-2" required>
