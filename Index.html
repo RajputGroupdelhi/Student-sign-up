@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Login Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Student Login Form</h2>
+    
+    <form id="loginForm" class="space-y-4">
+      <label for="name" class="sr-only">Full Name</label>
+      <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded" required>
+
+      <label for="roll" class="sr-only">Roll No.</label>
+      <input type="text" id="roll" placeholder="Roll No." class="w-full p-2 border rounded" required>
+
+      <label for="studentId" class="sr-only">Student ID</label>
+      <input type="text" id="studentId" placeholder="Student ID" class="w-full p-2 border rounded" required>
+
+      <label for="email" class="sr-only">Email ID</label>
+      <input type="email" id="email" placeholder="Email ID" class="w-full p-2 border rounded" required>
+
+      <label for="mobile" class="sr-only">Mobile No.</label>
+      <input type="tel" id="mobile" placeholder="Mobile No." class="w-full p-2 border rounded" required pattern="[0-9]{10}">
+
+      <label for="member" class="sr-only">Select Member</label>
+      <select id="member" class="w-full p-2 border rounded" required>
+        <option value="">Select Member</option>
+        <option value="Shankar">Shankar</option>
+        <option value="Harsh">Harsh</option>
+        <option value="Vishal">Vishal</option>
+      </select>
+
+      <!-- Terms & Conditions link -->
+      <label class="flex items-center">
+        <input type="checkbox" id="agree" class="mr-2" required>
+        I agree to the 
+        <a href="terms.html" target="_blank" class="text-blue-600 underline ml-1">Terms & Conditions</a>
+      </label>
+
+      <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition">
+        Submit
+      </button>
+    </form>
+
+    <p id="msg" class="mt-4 text-center font-semibold"></p>
+
+    <footer class="mt-6 text-center text-gray-600 text-sm">
+      Rajput IT Solutions Limited © 2025 All Rights Reserved <br>
+      Copyright © Study Support Organization
+    </footer>
+  </div>
+</body>
+  </html>
