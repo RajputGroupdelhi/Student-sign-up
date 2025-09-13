@@ -33,7 +33,26 @@
         <option value="Vishal">Vishal</option>
       </select>
       <script>
-  // 🔗 Apna Google Apps Script URL yaha paste karo
+      <!-- Terms & Conditions link -->
+      <label class="flex items-center">
+        <input type="checkbox" id="agree" class="mr-2" required>
+        I agree to the 
+        <a href="terms.html" target="_blank" class="text-blue-600 underline ml-1">Terms & Conditions</a>
+      </label>
+
+      <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition">
+        Submit
+      </button>
+    </form>
+
+    <p id="msg" class="mt-4 text-center font-semibold"></p>
+
+    <footer class="mt-6 text-center text-gray-600 text-sm">
+      Rajput IT Solutions Limited © 2025 All Rights Reserved <br>
+      Copyright © Study Support Organization
+    </footer>
+  </div>
+/ 🔗 Apna Google Apps Script URL yaha paste karo
   const ENDPOINT = "https://script.google.com/macros/s/AKfycbxxxxxxx/exec";  
 
   const form = document.getElementById("regForm");
@@ -70,24 +89,5 @@
     }
   });
       </script>
-      <!-- Terms & Conditions link -->
-      <label class="flex items-center">
-        <input type="checkbox" id="agree" class="mr-2" required>
-        I agree to the 
-        <a href="terms.html" target="_blank" class="text-blue-600 underline ml-1">Terms & Conditions</a>
-      </label>
-
-      <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition">
-        Submit
-      </button>
-    </form>
-
-    <p id="msg" class="mt-4 text-center font-semibold"></p>
-
-    <footer class="mt-6 text-center text-gray-600 text-sm">
-      Rajput IT Solutions Limited © 2025 All Rights Reserved <br>
-      Copyright © Study Support Organization
-    </footer>
-  </div>
 </body>
   </html>
