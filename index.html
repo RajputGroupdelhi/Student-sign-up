@@ -44,8 +44,8 @@
 
   <!-- JavaScript -->
   <script>
-   // Yaha apna Google Apps Script Web App URL paste karo
-    const ENDPOINT ="https://script.google.com/macros/s/PASTE-YOUR-WEBAPP-ID/exec"
+    // ✅ Replace this with your actual Web App URL from Apps Script deployment
+    const ENDPOINT = "https://script.google.com/macros/s/PASTE-YOUR-WEBAPP-ID/exec";
 
     const form = document.getElementById("loginForm");
     const msg  = document.getElementById("msg");
@@ -53,6 +53,7 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.textContent = "⏳ Submitting...";
+      msg.className = "mt-4 text-center text-blue-600 font-semibold";
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
