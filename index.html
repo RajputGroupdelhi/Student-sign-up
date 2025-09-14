@@ -43,41 +43,45 @@
   </div>
 
   <!-- JavaScript -->
-  <script>
-    const ENDPOINT = "https://script.google.com/macros/s/AKfycbyxGlNHA3fKRWoSjqOAQ0aKNR7mQrSI1qLKXyY6lIWTeYbUiHFLyYF_X2JgTpkmqsqQ/exec";
+    <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyxGlNHA3fKRWoSjqOAQ0aKNR7mQrSI1qLKXyY6lIWTeYbUiHFLyYF_X2JgTpkmqsqQ/exec";  // <-- Replace this with the Web App URL (with /exec)
+    const form = document.getElementById("regForm");
 
-    const form = document.getElementById("loginForm");
-    const msg  = document.getElementById("msg");
-
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", function(e) {
       e.preventDefault();
-      msg.textContent = "⏳ Submitting...";
-      msg.className = "mt-4 text-center text-gray-600 font-semibold";
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+      const data = {
+        fullName: form.fullName.value,
+        roll: form.roll.value,
+        studentId: form.studentId.value,
+        email: form.email.value,
+        mobile: form.mobile.value,
+        member: form.member.value
+      };
 
-      try {
-        const res = await fetch(ENDPOINT, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: { "Content-Type": "application/json" }
-        });
-
-        const result = await res.json();
-        if (result.status === "success") {
-          msg.textContent = "✅ Data saved successfully!";
-          msg.className = "mt-4 text-center text-green-600 font-semibold";
-          form.reset();
-        } else {
-          msg.textContent = "⚠️ Error: " + result.message;
-          msg.className = "mt-4 text-center text-red-600 font-semibold";
+      fetch(scriptURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      } catch (err) {
-        msg.textContent = "❌ Failed: " + err.message;
-        msg.className = "mt-4 text-center text-red-600 font-semibold";
-      }
+        return response.json();
+      })
+      .then(result => {
+        if (result.status === "success") {
+          window.location.href = "https://chat.whatsapp.com/EztJzrccBfaL7sot42QtNs?mode=ems_copy_t";
+        } else {
+          alert("Submission failed: " + (result.message || "Unknown error"));
+        }
+      })
+      .catch(error => {
+        alert("Error: " + error.message);
+        console.error("Error details:", error);
+      });
     });
   </script>
 </body>
-          </html>
+</html>
