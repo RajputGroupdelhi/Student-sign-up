@@ -22,9 +22,7 @@
         <option value="Harsh">Harsh</option>
         <option value="Vishal">Vishal</option>
       </select>
-<input type="text" name="Submit" placeholder="Submit button" class="w-full p-2 border rounded" required>
-  " class="w-full p-2 border rounded" required pattern="[0-9]{10}">
-      <!-- Terms & Conditions -->
+
       <label class="flex items-center text-sm">
         <input type="checkbox" required class="mr-2">
         I agree to the 
@@ -46,11 +44,11 @@
 
   <!-- JavaScript -->
   <script>
-    // 🔗 Apna Google Apps Script URL yaha paste karo
-    const ENDPOINT = "https://docs.google.com/spreadsheets/d/1DzWgnzNft2LxDqrvrxT60QboumhsK6QcFHRowKLkBb4/edit?usp=drivesdk"
+   // Yaha apna Google Apps Script Web App URL paste karo
+    const ENDPOINT ="https://script.google.com/macros/s/PASTE-YOUR-WEBAPP-ID/exec"
 
     const form = document.getElementById("loginForm");
-    const msg = document.getElementById("msg");
+    const msg  = document.getElementById("msg");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -65,9 +63,10 @@
           body: JSON.stringify(data),
           headers: { "Content-Type": "application/json" }
         });
+
         const result = await res.json();
         if (result.status === "success") {
-          msg.textContent = "✅ Login Successful!";
+          msg.textContent = "✅ Data saved successfully!";
           msg.className = "mt-4 text-center text-green-600 font-semibold";
           form.reset();
         } else {
