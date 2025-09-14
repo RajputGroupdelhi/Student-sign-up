@@ -44,8 +44,7 @@
 
   <!-- JavaScript -->
   <script>
-    // ✅ Replace this with your actual Web App URL from Apps Script deployment
-    const ENDPOINT = "https://script.google.com/macros/s/PASTE-YOUR-WEBAPP-ID/exec";
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbwXDic8Vxm5LJ0ZritHLDF1ImfUsdq--cCsdTCpM7GZ_7sz_225w_epP8tLCjEXsqFN/exec";
 
     const form = document.getElementById("loginForm");
     const msg  = document.getElementById("msg");
@@ -53,7 +52,7 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.textContent = "⏳ Submitting...";
-      msg.className = "mt-4 text-center text-blue-600 font-semibold";
+      msg.className = "mt-4 text-center text-gray-600 font-semibold";
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
@@ -81,4 +80,4 @@
     });
   </script>
 </body>
-                                                                                                      </html>
+          </html>
